@@ -4,13 +4,13 @@
 #include <QUuid>
 #include <QJsonObject>
 
-#include "porttype.hpp"
-#include "nodestate.hpp"
-#include "nodegeometry.hpp"
-#include "nodedata.hpp"
-#include "nodegraphicsobject.hpp"
-#include "connectiongraphicsobject.hpp"
-#include "serializable.hpp"
+#include "porttype.h"
+#include "nodestate.h"
+#include "nodegeometry.h"
+#include "nodedata.h"
+#include "nodegraphicsobject.h"
+#include "connectiongraphicsobject.h"
+#include "serializable.h"
 
 class Connection;
 class ConnectionState;
@@ -32,7 +32,6 @@ public:
 
 public:
     QUuid id() const;
-
     void reactToPossibleConnection(PortType,
                                    NodeDataType const &,
                                    QPointF const &scenePoint);

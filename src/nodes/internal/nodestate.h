@@ -5,10 +5,9 @@
 
 #include <QUuid>
 
-#include "export.hpp"
-#include "porttype.hpp"
-#include "nodedata.hpp"
-#include "memory.hpp"
+#include "porttype.h"
+#include "nodedata.h"
+#include "memory.h"
 
 class Connection;
 class NodeDataModel;

@@ -2,14 +2,11 @@
 
 #include <QWidget>
 
-#include "porttype.hpp"
-#include "nodedata.hpp"
-#include "serializable.hpp"
-#include "nodegeometry.hpp"
-#include "nodestyle.hpp"
-#include "nodepainterdelegate.hpp"
-#include "export.hpp"
-#include "memory.hpp"
+#include "porttype.h"
+#include "nodedata.h"
+#include "serializable.h"
+#include "nodestyle.h"
+#include "nodepainterdelegate.h"
 
 class NodePainterDelegate;
 
@@ -21,7 +18,6 @@ enum class NodeValidationState
 };
 
 class Connection;
-
 class StyleCollection;
 
 class NodeDataModel : public QObject, public Serializable

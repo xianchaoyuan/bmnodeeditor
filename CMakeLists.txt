@@ -36,8 +36,9 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 file(GLOB_RECURSE CPP_HEADER_FILES
-    src/nodes/internal/*.hpp
-    src/models/image/*.hpp)
+    src/*.h
+    src/nodes/internal/*.h
+    src/models/image/*.h)
 
 set(CPP_SOURCE_FILES
     main.cpp

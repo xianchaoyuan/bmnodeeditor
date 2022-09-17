@@ -1,17 +1,17 @@
-#include "nodepainter.hpp"
+#include "nodepainter.h"
 
 #include <cmath>
 
 #include <QMargins>
 
-#include "stylecollection.hpp"
-#include "porttype.hpp"
-#include "nodegraphicsobject.hpp"
-#include "nodegeometry.hpp"
-#include "nodestate.hpp"
-#include "nodedatamodel.hpp"
-#include "node.hpp"
-#include "flowscene.hpp"
+#include "stylecollection.h"
+#include "porttype.h"
+#include "nodegraphicsobject.h"
+#include "nodegeometry.h"
+#include "nodestate.h"
+#include "nodedatamodel.h"
+#include "node.h"
+#include "flowscene.h"
 
 void NodePainter::paint(QPainter *painter, Node &node, FlowScene const &scene)
 {

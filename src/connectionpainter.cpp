@@ -1,13 +1,13 @@
-#include "connectionpainter.hpp"
+#include "connectionpainter.h"
 
 #include <QIcon>
 
-#include "connectiongeometry.hpp"
-#include "connectionstate.hpp"
-#include "connectiongraphicsobject.hpp"
-#include "connection.hpp"
-#include "nodedata.hpp"
-#include "stylecollection.hpp"
+#include "connectiongeometry.h"
+#include "connectionstate.h"
+#include "connectiongraphicsobject.h"
+#include "connection.h"
+#include "nodedata.h"
+#include "stylecollection.h"
 
 static QPainterPath cubicPath(ConnectionGeometry const &geom)
 {

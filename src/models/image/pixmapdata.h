@@ -2,24 +2,22 @@
 
 #include <QPixmap>
 
-#include "nodedatamodel.hpp"
+#include "nodedata.h"
 
-/// The class can potentially incapsulate any user data which
-/// need to be transferred within the Node Editor graph
+/**
+ * @brief 可能包含需要在节点编辑器图形中传输的任何用户数据
+ */
 class PixmapData : public NodeData
 {
 public:
     PixmapData() {}
     PixmapData(QPixmap const &pixmap)
-        : _pixmap(pixmap)
-    {}
+        : _pixmap(pixmap) {}
 
     NodeDataType type() const override
     {
-        //       id      name
-        return {"pixmap", "P"};
+        return { "pixmap", "P" };
     }
-
     QPixmap pixmap() const { return _pixmap; }
 
 private:

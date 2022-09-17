@@ -1,4 +1,4 @@
-#include "flowviewstyle.hpp"
+#include "flowviewstyle.h"
 
 #include <QFile>
 #include <QJsonDocument>
@@ -7,7 +7,7 @@
 #include <QJsonArray>
 #include <QDebug>
 
-#include "stylecollection.hpp"
+#include "stylecollection.h"
 
 inline void initResources() { Q_INIT_RESOURCE(resources); }
 

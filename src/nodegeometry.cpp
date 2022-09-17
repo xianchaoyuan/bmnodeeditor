@@ -1,10 +1,10 @@
-#include "nodegeometry.hpp"
-#include "porttype.hpp"
-#include "nodestate.hpp"
-#include "nodedatamodel.hpp"
-#include "node.hpp"
-#include "nodegraphicsobject.hpp"
-#include "stylecollection.hpp"
+#include "nodegeometry.h"
+#include "porttype.h"
+#include "nodestate.h"
+#include "nodedatamodel.h"
+#include "node.h"
+#include "nodegraphicsobject.h"
+#include "stylecollection.h"
 
 #include <QtGlobal>
 

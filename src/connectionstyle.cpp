@@ -1,5 +1,5 @@
-#include "connectionstyle.hpp"
-#include "stylecollection.hpp"
+#include "connectionstyle.h"
+#include "stylecollection.h"
 
 #include <QFile>
 #include <QJsonDocument>

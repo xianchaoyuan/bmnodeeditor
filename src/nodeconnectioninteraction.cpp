@@ -1,9 +1,9 @@
-#include "nodeconnectioninteraction.hpp"
-#include "connectiongraphicsobject.hpp"
-#include "nodegraphicsobject.hpp"
-#include "nodedatamodel.hpp"
-#include "datamodelregistry.hpp"
-#include "flowscene.hpp"
+#include "nodeconnectioninteraction.h"
+#include "connectiongraphicsobject.h"
+#include "nodegraphicsobject.h"
+#include "nodedatamodel.h"
+#include "datamodelregistry.h"
+#include "flowscene.h"
 
 NodeConnectionInteraction::NodeConnectionInteraction(Node &node, Connection &connection, FlowScene &scene)
     : _node(&node),

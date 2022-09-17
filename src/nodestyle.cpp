@@ -1,4 +1,4 @@
-#include "nodestyle.hpp"
+#include "nodestyle.h"
 
 #include <iostream>
 
@@ -9,7 +9,7 @@
 #include <QJsonArray>
 #include <QDebug>
 
-#include "stylecollection.hpp"
+#include "stylecollection.h"
 
 inline void initResources() { Q_INIT_RESOURCE(resources); }
 

@@ -1,4 +1,4 @@
-#include "properties.hpp"
+#include "properties.h"
 
 void Properties::put(QString const &name, QVariant const &v)
 {

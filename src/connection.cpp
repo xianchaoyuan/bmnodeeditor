@@ -1,18 +1,18 @@
-#include "connection.hpp"
+#include "connection.h"
 
 #include <cmath>
 #include <utility>
 #include <QtWidgets>
 #include <QtGlobal>
-#include "node.hpp"
-#include "flowscene.hpp"
-#include "flowview.hpp"
-#include "nodegeometry.hpp"
-#include "nodegraphicsobject.hpp"
-#include "nodedatamodel.hpp"
-#include "connectionstate.hpp"
-#include "connectiongeometry.hpp"
-#include "connectiongraphicsobject.hpp"
+#include "node.h"
+#include "flowscene.h"
+#include "flowview.h"
+#include "nodegeometry.h"
+#include "nodegraphicsobject.h"
+#include "nodedatamodel.h"
+#include "connectionstate.h"
+#include "connectiongeometry.h"
+#include "connectiongraphicsobject.h"
 
 Connection::Connection(PortType portType, Node &node, PortIndex portIndex)
     : _uid(QUuid::createUuid()),

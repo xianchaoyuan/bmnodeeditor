@@ -1,6 +1,6 @@
-#include "connectionblureffect.hpp"
-#include "connectiongraphicsobject.hpp"
-#include "connectionpainter.hpp"
+#include "connectionblureffect.h"
+#include "connectiongraphicsobject.h"
+#include "connectionpainter.h"
 
 ConnectionBlurEffect::ConnectionBlurEffect(ConnectionGraphicsObject*)
 {

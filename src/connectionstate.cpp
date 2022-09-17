@@ -1,10 +1,10 @@
-#include "connectionstate.hpp"
+#include "connectionstate.h"
 
 #include <iostream>
 #include <QPointF>
 
-#include "flowscene.hpp"
-#include "node.hpp"
+#include "flowscene.h"
+#include "node.h"
 
 ConnectionState::~ConnectionState()
 {

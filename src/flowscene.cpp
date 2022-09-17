@@ -1,4 +1,4 @@
-#include "flowscene.hpp"
+#include "flowscene.h"
 
 #include <stdexcept>
 #include <utility>
@@ -15,13 +15,13 @@
 #include <QtGlobal>
 #include <QDebug>
 
-#include "node.hpp"
-#include "nodegraphicsobject.hpp"
-#include "nodegraphicsobject.hpp"
-#include "connectiongraphicsobject.hpp"
-#include "connection.hpp"
-#include "flowview.hpp"
-#include "datamodelregistry.hpp"
+#include "node.h"
+#include "nodegraphicsobject.h"
+#include "nodegraphicsobject.h"
+#include "connectiongraphicsobject.h"
+#include "connection.h"
+#include "flowview.h"
+#include "datamodelregistry.h"
 
 FlowScene::FlowScene(std::shared_ptr<DataModelRegistry> registry, QObject *parent)
     : QGraphicsScene(parent),

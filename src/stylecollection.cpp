@@ -1,4 +1,4 @@
-#include "stylecollection.hpp"
+#include "stylecollection.h"
 
 NodeStyle const &StyleCollection::nodeStyle()
 {

@@ -1,11 +1,11 @@
-#include "ImageShowModel.hpp"
+#include "ImageShowModel.h"
 
 #include <QEvent>
 #include <QDir>
 #include <QFileDialog>
 
-#include "datamodelregistry.hpp"
-#include "PixmapData.hpp"
+#include "datamodelregistry.h"
+#include "PixmapData.h"
 
 ImageShowModel::ImageShowModel()
     : _label(new QLabel("Image will appear here"))

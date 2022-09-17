@@ -1,6 +1,6 @@
-#include "connectiongeometry.hpp"
+#include "connectiongeometry.h"
 #include <cmath>
-#include "stylecollection.hpp"
+#include "stylecollection.h"
 
 ConnectionGeometry::ConnectionGeometry()
     : _in(0, 0), _out(0, 0), _lineWidth(3.0), _hovered(false)

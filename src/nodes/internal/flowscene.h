@@ -7,10 +7,9 @@
 #include <QUuid>
 #include <QGraphicsScene>
 
-#include "quuidstdhash.hpp"
-#include "export.hpp"
-#include "datamodelregistry.hpp"
-#include "typeconverter.hpp"
+#include "quuidstdhash.h"
+#include "datamodelregistry.h"
+#include "typeconverter.h"
 
 class NodeDataModel;
 class FlowItemInterface;

@@ -4,8 +4,8 @@
 
 #include <QHash>
 
-#include "nodedata.hpp"
-#include "memory.hpp"
+#include "nodedata.h"
+#include "memory.h"
 
 using SharedNodeData = std::shared_ptr<NodeData>;
 

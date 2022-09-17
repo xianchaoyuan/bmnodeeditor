@@ -1,7 +1,7 @@
 #pragma once
 
-#include "node.hpp"
-#include "connection.hpp"
+#include "node.h"
+#include "connection.h"
 
 class DataModelRegistry;
 class FlowScene;

@@ -2,8 +2,6 @@
 
 #include <QGraphicsView>
 
-#include "export.hpp"
-
 class FlowScene;
 
 class FlowView : public QGraphicsView

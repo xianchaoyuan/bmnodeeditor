@@ -1,5 +1,5 @@
-#include "nodedatamodel.hpp"
-#include "stylecollection.hpp"
+#include "nodedatamodel.h"
+#include "stylecollection.h"
 
 NodeDataModel::NodeDataModel()
     : _nodeStyle(StyleCollection::nodeStyle())

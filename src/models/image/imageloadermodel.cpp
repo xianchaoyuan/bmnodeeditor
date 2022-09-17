@@ -1,4 +1,5 @@
-#include "ImageLoaderModel.hpp"
+#include "imageloadermodel.h"
+#include "pixmapdata.h"
 
 #include <QEvent>
 #include <QDir>
@@ -14,9 +15,7 @@ ImageLoaderModel::ImageLoaderModel()
     f.setItalic(true);
 
     _label->setFont(f);
-
     _label->setFixedSize(200, 200);
-
     _label->installEventFilter(this);
 }
 

@@ -1,17 +1,14 @@
 #pragma once
 
-#include "nodestyle.hpp"
-#include "connectionstyle.hpp"
-#include "flowviewstyle.hpp"
-#include "export.hpp"
+#include "nodestyle.h"
+#include "connectionstyle.h"
+#include "flowviewstyle.h"
 
 class StyleCollection
 {
 public:
     static NodeStyle const &nodeStyle();
-
     static ConnectionStyle const &connectionStyle();
-
     static FlowViewStyle const &flowViewStyle();
 
 public:

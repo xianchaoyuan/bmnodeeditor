@@ -1,8 +1,8 @@
-#include "nodedata.hpp"
-#include "flowscene.hpp"
-#include "flowview.hpp"
-#include "imageloadermodel.hpp"
-#include "imageshowmodel.hpp"
+#include "nodedata.h"
+#include "flowscene.h"
+#include "flowview.h"
+#include "imageloadermodel.h"
+#include "imageshowmodel.h"
 
 #include <QApplication>
 

@@ -10,9 +10,8 @@
 
 #include <QString>
 
-#include "nodedatamodel.hpp"
-#include "typeconverter.hpp"
-#include "export.hpp"
+#include "nodedatamodel.h"
+#include "typeconverter.h"
 
 /**
  * @brief 使用映射存储模型（名称、模型）

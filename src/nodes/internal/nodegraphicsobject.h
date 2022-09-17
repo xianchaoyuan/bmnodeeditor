@@ -3,9 +3,9 @@
 #include <QUuid>
 #include <QGraphicsObject>
 
-#include "connection.hpp"
-#include "nodegeometry.hpp"
-#include "nodestate.hpp"
+#include "connection.h"
+#include "nodegeometry.h"
+#include "nodestate.h"
 
 class QGraphicsProxyWidget;
 class FlowScene;

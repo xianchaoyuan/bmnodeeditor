@@ -2,7 +2,7 @@
 
 #include <QUuid>
 
-#include "porttype.hpp"
+#include "porttype.h"
 
 class QPointF;
 class Node;

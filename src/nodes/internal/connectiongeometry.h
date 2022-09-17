@@ -3,7 +3,7 @@
 #include <QPointF>
 #include <QRectF>
 
-#include "porttype.hpp"
+#include "porttype.h"
 
 class ConnectionGeometry
 {

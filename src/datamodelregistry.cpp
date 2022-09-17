@@ -1,4 +1,4 @@
-#include "datamodelregistry.hpp"
+#include "datamodelregistry.h"
 
 #include <QFile>
 #include <QMessageBox>

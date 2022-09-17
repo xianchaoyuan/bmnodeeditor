@@ -5,12 +5,12 @@
 #include <QObject>
 #include <QLabel>
 
-#include "datamodelregistry.hpp"
-#include "nodedata.hpp"
-#include "pixmapdata.hpp"
+#include "nodedata.h"
+#include "nodedatamodel.h"
 
-/// The model dictates the number of inputs and outputs for the Node.
-/// In this example it has no logic.
+/**
+ * @brief 图片加载模型
+ */
 class ImageLoaderModel : public NodeDataModel
 {
     Q_OBJECT

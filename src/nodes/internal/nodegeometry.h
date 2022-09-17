@@ -5,9 +5,8 @@
 #include <QTransform>
 #include <QFontMetrics>
 
-#include "porttype.hpp"
-#include "export.hpp"
-#include "memory.hpp"
+#include "porttype.h"
+#include "memory.h"
 
 class NodeState;
 class NodeDataModel;

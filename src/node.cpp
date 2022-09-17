@@ -1,14 +1,14 @@
-#include "node.hpp"
+#include "node.h"
 
 #include <QObject>
 #include <utility>
 #include <iostream>
 
-#include "flowscene.hpp"
-#include "nodegraphicsobject.hpp"
-#include "nodedatamodel.hpp"
-#include "connectiongraphicsobject.hpp"
-#include "connectionstate.hpp"
+#include "flowscene.h"
+#include "nodegraphicsobject.h"
+#include "nodedatamodel.h"
+#include "connectiongraphicsobject.h"
+#include "connectionstate.h"
 
 Node::Node(std::unique_ptr<NodeDataModel> && dataModel)
     : _uid(QUuid::createUuid()),

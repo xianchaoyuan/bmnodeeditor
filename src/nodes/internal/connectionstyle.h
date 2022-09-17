@@ -2,8 +2,7 @@
 
 #include <QColor>
 
-#include "export.hpp"
-#include "style.hpp"
+#include "style.h"
 
 class ConnectionStyle : public Style
 {

@@ -2,9 +2,8 @@
 
 #include <QPainter>
 
-#include "nodegeometry.hpp"
-#include "nodedatamodel.hpp"
-#include "export.hpp"
+#include "nodegeometry.h"
+#include "nodedatamodel.h"
 
 /**
  * @brief 允许自定义绘制

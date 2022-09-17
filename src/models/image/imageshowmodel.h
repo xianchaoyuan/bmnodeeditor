@@ -5,11 +5,11 @@
 #include <QObject>
 #include <QLabel>
 
-#include "datamodelregistry.hpp"
-#include "nodedatamodel.hpp"
+#include "nodedatamodel.h"
 
-/// The model dictates the number of inputs and outputs for the Node.
-/// In this example it has no logic.
+/**
+ * @brief 图片显示模型
+ */
 class ImageShowModel : public NodeDataModel
 {
     Q_OBJECT

@@ -4,15 +4,14 @@
 #include <QUuid>
 #include <QVariant>
 
-#include "porttype.hpp"
-#include "nodedata.hpp"
-#include "serializable.hpp"
-#include "connectionstate.hpp"
-#include "connectiongeometry.hpp"
-#include "typeconverter.hpp"
-#include "quuidstdhash.hpp"
-#include "export.hpp"
-#include "memory.hpp"
+#include "porttype.h"
+#include "nodedata.h"
+#include "serializable.h"
+#include "connectionstate.h"
+#include "connectiongeometry.h"
+#include "typeconverter.h"
+#include "quuidstdhash.h"
+#include "memory.h"
 
 class QPointF;
 class Node;

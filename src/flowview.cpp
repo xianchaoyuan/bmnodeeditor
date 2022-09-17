@@ -1,4 +1,4 @@
-#include "flowview.hpp"
+#include "flowview.h"
 
 #include <QGraphicsScene>
 #include <QPen>
@@ -12,12 +12,12 @@
 #include <iostream>
 #include <cmath>
 
-#include "flowscene.hpp"
-#include "datamodelregistry.hpp"
-#include "node.hpp"
-#include "nodegraphicsobject.hpp"
-#include "connectiongraphicsobject.hpp"
-#include "stylecollection.hpp"
+#include "flowscene.h"
+#include "datamodelregistry.h"
+#include "node.h"
+#include "nodegraphicsobject.h"
+#include "connectiongraphicsobject.h"
+#include "stylecollection.h"
 
 FlowView::FlowView(QWidget *parent)
     : QGraphicsView(parent),

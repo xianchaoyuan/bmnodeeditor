@@ -1,4 +1,4 @@
-#include "nodegraphicsobject.hpp"
+#include "nodegraphicsobject.h"
 
 #include <iostream>
 #include <cstdlib>
@@ -6,14 +6,14 @@
 #include <QtWidgets>
 #include <QGraphicsEffect>
 
-#include "connectiongraphicsobject.hpp"
-#include "connectionstate.hpp"
-#include "flowscene.hpp"
-#include "nodepainter.hpp"
-#include "node.hpp"
-#include "nodedatamodel.hpp"
-#include "nodeconnectioninteraction.hpp"
-#include "stylecollection.hpp"
+#include "connectiongraphicsobject.h"
+#include "connectionstate.h"
+#include "flowscene.h"
+#include "nodepainter.h"
+#include "node.h"
+#include "nodedatamodel.h"
+#include "nodeconnectioninteraction.h"
+#include "stylecollection.h"
 
 NodeGraphicsObject::NodeGraphicsObject(FlowScene &scene, Node &node)
 : _scene(scene),
