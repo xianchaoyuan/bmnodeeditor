@@ -11,7 +11,6 @@
 #include "connectiongeometry.h"
 #include "connectionpainter.h"
 #include "connectionstate.h"
-#include "connectionblureffect.h"
 #include "nodegraphicsobject.h"
 #include "nodeconnectioninteraction.h"
 #include "node.h"
@@ -52,11 +51,9 @@ QRectF ConnectionGraphicsObject::boundingRect() const
 QPainterPath ConnectionGraphicsObject::shape() const
 {
 #ifdef DEBUG_DRAWING
-
-    //QPainterPath path;
-
-    //path.addRect(boundingRect());
-    //return path;
+    QPainterPath path;
+    path.addRect(boundingRect());
+    return path;
 
 #else
     auto const &geom =
@@ -71,7 +68,6 @@ void ConnectionGraphicsObject::setGeometryChanged()
 {
     prepareGeometryChange();
 }
-
 
 void ConnectionGraphicsObject::move()
 {
@@ -198,9 +194,4 @@ void ConnectionGraphicsObject::addGraphicsEffect()
 
     effect->setBlurRadius(5);
     setGraphicsEffect(effect);
-
-    //auto effect = new QGraphicsDropShadowEffect;
-    //auto effect = new ConnectionBlurEffect(this);
-    //effect->setOffset(4, 4);
-    //effect->setColor(QColor(Qt::gray).darker(800));
 }

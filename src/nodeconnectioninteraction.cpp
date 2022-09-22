@@ -107,9 +107,9 @@ bool NodeConnectionInteraction::tryConnect() const
     return true;
 }
 
-/// 1) Node and Connection should be already connected
-/// 2) If so, clear Connection entry in the NodeState
-/// 3) Set Connection end to 'requiring a port'
+//! 1) Node and Connection should be already connected
+//! 2) If so, clear Connection entry in the NodeState
+//! 3) Set Connection end to 'requiring a port'
 bool NodeConnectionInteraction::disconnect(PortType portToDisconnect) const
 {
     PortIndex portIndex =

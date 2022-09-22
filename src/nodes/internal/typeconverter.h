@@ -9,7 +9,7 @@
 
 using SharedNodeData = std::shared_ptr<NodeData>;
 
-// a function taking in NodeData and returning NodeData
+// 接收节点数据并返回节点数据的函数
 using TypeConverter =
   std::function<SharedNodeData(SharedNodeData)>;
 

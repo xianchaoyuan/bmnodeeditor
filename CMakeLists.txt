@@ -43,7 +43,6 @@ file(GLOB_RECURSE CPP_HEADER_FILES
 set(CPP_SOURCE_FILES
     main.cpp
     src/connection.cpp
-    src/connectionblureffect.cpp
     src/connectiongeometry.cpp
     src/connectiongraphicsobject.cpp
     src/connectionpainter.cpp
@@ -61,7 +60,6 @@ set(CPP_SOURCE_FILES
     src/nodepainter.cpp
     src/nodestate.cpp
     src/nodestyle.cpp
-    src/properties.cpp
     src/stylecollection.cpp
 
     src/models/image/imageloadermodel.cpp

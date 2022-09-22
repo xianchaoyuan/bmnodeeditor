@@ -11,8 +11,8 @@ class QGraphicsProxyWidget;
 class FlowScene;
 class FlowItemEntry;
 
-/// Class reacts on GUI events, mouse clicks and
-/// forwards painting operation.
+//! Class reacts on GUI events, mouse clicks and
+//! forwards painting operation.
 class NodeGraphicsObject : public QGraphicsObject
 {
     Q_OBJECT
@@ -27,8 +27,8 @@ public:
     QRectF boundingRect() const override;
     void setGeometryChanged();
 
-    /// Visits all attached connections and corrects
-    /// their corresponding end points.
+    //! Visits all attached connections and corrects
+    //! their corresponding end points.
     void moveConnections() const;
 
     enum { Type = UserType + 1 };
@@ -48,7 +48,7 @@ protected:
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
     void hoverMoveEvent(QGraphicsSceneHoverEvent *) override;
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
-    void contextMenuEvent(QGraphicsSceneContextMenuEvent* event) override;
+    void contextMenuEvent(QGraphicsSceneContextMenuEvent *event) override;
 
 private:
     void embedQWidget();

@@ -10,6 +10,7 @@
 
 class NodePainterDelegate;
 
+// 节点验证状态
 enum class NodeValidationState
 {
     Valid,
@@ -20,28 +21,30 @@ enum class NodeValidationState
 class Connection;
 class StyleCollection;
 
+/**
+ * @brief 节点数据模型
+ */
 class NodeDataModel : public QObject, public Serializable
 {
     Q_OBJECT
 
 public:
     NodeDataModel();
-
     virtual ~NodeDataModel() = default;
 
-    /// Caption is used in GUI
+    //! Caption is used in GUI
     virtual QString caption() const = 0;
 
-    /// It is possible to hide caption in GUI
+    //! It is possible to hide caption in GUI
     virtual bool captionVisible() const { return true; }
 
-    /// Port caption is used in GUI to label individual ports
+    //! Port caption is used in GUI to label individual ports
     virtual QString portCaption(PortType, PortIndex) const { return QString(); }
 
-    /// It is possible to hide port caption in GUI
+    //! It is possible to hide port caption in GUI
     virtual bool portCaptionVisible(PortType, PortIndex) const { return false; }
 
-    /// Name makes this model unique
+    //! Name makes this model unique
     virtual QString name() const = 0;
 
 public:
@@ -72,7 +75,7 @@ public:
     void setNodeStyle(NodeStyle const &style);
 
 public:
-    /// Triggers the algorithm
+    //! Triggers the algorithm
     virtual void setInData(std::shared_ptr<NodeData> nodeData, PortIndex port) = 0;
 
     // Use this if portInConnectionPolicy returns ConnectionPolicy::Many
@@ -122,10 +125,10 @@ public slots:
     }
 
 signals:
-    /// Triggers the updates in the nodes downstream.
+    //! Triggers the updates in the nodes downstream.
     void dataUpdated(PortIndex index);
 
-    /// Triggers the propagation of the empty data downstream.
+    //! Triggers the propagation of the empty data downstream.
     void dataInvalidated(PortIndex index);
 
     void computingStarted();

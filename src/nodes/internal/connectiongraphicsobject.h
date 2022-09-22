@@ -10,7 +10,7 @@ class ConnectionGeometry;
 class Node;
 
 /**
- * @brief 用于连接的图形对象。将自身添加到场景中
+ * @brief 用于连接的图形对象
  */
 class ConnectionGraphicsObject : public QGraphicsObject
 {
@@ -31,7 +31,7 @@ public:
 
     void setGeometryChanged();
 
-    /// Updates the position of both ends
+    //! Updates the position of both ends
     void move();
 
     void lock(bool locked);

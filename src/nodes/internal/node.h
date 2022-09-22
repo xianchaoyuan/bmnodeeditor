@@ -50,32 +50,31 @@ public:
     NodeDataModel *nodeDataModel() const;
 
 public slots: // data propagation
-    /// Propagates incoming data to the underlying model.
+    //! Propagates incoming data to the underlying model.
     void propagateData(std::shared_ptr<NodeData> nodeData,
                        PortIndex inPortIndex,
                        const QUuid& connectionId) const;
 
-    /// Fetches data from model's OUT #index port
-    /// and propagates it to the connection
+    //! Fetches data from model's OUT #index port
+    //! and propagates it to the connection
     void onDataUpdated(PortIndex index);
 
-    /// Propagates empty data to the attached connection.
+    //! Propagates empty data to the attached connection.
     void onDataInvalidated(PortIndex index);
 
-    /// update the graphic part if the size of the embeddedwidget changes
+    //! update the graphic part if the size of the embeddedwidget changes
     void onNodeSizeUpdated();
 
 private:
     // addressing
     QUuid _uid;
 
-    // data
-    std::unique_ptr<NodeDataModel> _nodeDataModel;
-
     NodeState _nodeState;
 
     // painting
     NodeGeometry _nodeGeometry;
 
+    // data
+    std::unique_ptr<NodeDataModel> _nodeDataModel;
     std::unique_ptr<NodeGraphicsObject> _nodeGraphicsObject;
 };

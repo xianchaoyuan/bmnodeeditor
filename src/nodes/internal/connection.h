@@ -23,9 +23,9 @@ class Connection : public QObject, public Serializable
     Q_OBJECT
 
 public:
-    /// New Connection is attached to the port of the given Node.
-    /// The port has parameters (portType, portIndex).
-    /// The opposite connection end will require anothre port.
+    //! New Connection is attached to the port of the given Node.
+    //! The port has parameters (portType, portIndex).
+    //! The opposite connection end will require anothre port.
     Connection(PortType portType, Node &node, PortIndex portIndex);
     Connection(Node &nodeIn,
                PortIndex portIndexIn,
@@ -44,16 +44,16 @@ public:
 public:
     QUuid id() const;
 
-    /// Remembers the end being dragged.
-    /// Invalidates Node address.
-    /// Grabs mouse.
+    //! Remembers the end being dragged.
+    //! Invalidates Node address.
+    //! Grabs mouse.
     void setRequiredPort(PortType portType);
     PortType requiredPort() const;
 
     void setGraphicsObject(std::unique_ptr<ConnectionGraphicsObject> &&graphics);
 
-    /// Assigns a node to the required port.
-    /// It is assumed that there is a required port, no extra checks
+    //! Assigns a node to the required port.
+    //! It is assumed that there is a required port, no extra checks
     void setNodeToPort(Node &node, PortType portType, PortIndex portIndex);
     void removeFromNodes() const;
 

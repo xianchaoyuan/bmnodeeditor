@@ -12,8 +12,9 @@
 class Connection;
 class NodeDataModel;
 
-/// Contains vectors of connected input and output connections.
-/// Stores bool for reacting on hovering connections
+/**
+ * @brief 包含连接的输入和输出连接的向量，存储用于对悬停连接作出反应的bool
+ */
 class NodeState
 {
 public:
@@ -30,8 +31,8 @@ public:
     using ConnectionPtrSet =
     std::unordered_map<QUuid, Connection *>;
 
-    /// Returns vector of connections ID.
-    /// Some of them can be empty (null)
+    //! Returns vector of connections ID.
+    //! Some of them can be empty (null)
     std::vector<ConnectionPtrSet> const &getEntries(PortType) const;
     std::vector<ConnectionPtrSet> &getEntries(PortType);
 

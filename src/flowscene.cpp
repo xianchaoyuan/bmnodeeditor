@@ -165,7 +165,7 @@ Node &FlowScene::createNode(std::unique_ptr<NodeDataModel> &&dataModel)
     auto nodePtr = node.get();
     _nodes[node->id()] = std::move(node);
 
-    nodeCreated(*nodePtr);
+    emit nodeCreated(*nodePtr);
     return *nodePtr;
 }
 
@@ -181,23 +181,21 @@ Node &FlowScene::restoreNode(QJsonObject const &nodeJson)
     auto node = detail::make_unique<Node>(std::move(dataModel));
     auto ngo  = detail::make_unique<NodeGraphicsObject>(*this, *node);
     node->setGraphicsObject(std::move(ngo));
-
     node->restore(nodeJson);
 
     auto nodePtr = node.get();
     _nodes[node->id()] = std::move(node);
 
-    nodePlaced(*nodePtr);
-    nodeCreated(*nodePtr);
+    emit nodePlaced(*nodePtr);
+    emit nodeCreated(*nodePtr);
     return *nodePtr;
 }
 
 void FlowScene::removeNode(Node &node)
 {
-    // call signal
-    nodeDeleted(node);
+    emit nodeDeleted(node);
 
-    for(auto portType: {PortType::In,PortType::Out}) {
+    for(auto portType: {PortType::In, PortType::Out}) {
         auto nodeState = node.nodeState();
         auto const &nodeEntries = nodeState.getEntries(portType);
 
@@ -494,13 +492,13 @@ Node *locateNodeAt(QPointF scenePoint, FlowScene &scene,
                         Qt::DescendingOrder,
                         viewTransform);
 
-    //// items convertable to NodeGraphicsObject
+    //! items convertable to NodeGraphicsObject
     std::vector<QGraphicsItem*> filteredItems;
 
     std::copy_if(items.begin(),
                  items.end(),
                  std::back_inserter(filteredItems),
-                 [] (QGraphicsItem * item)
+                 [] (QGraphicsItem *item)
     {
         return (dynamic_cast<NodeGraphicsObject*>(item) != nullptr);
     });

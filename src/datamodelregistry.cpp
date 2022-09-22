@@ -6,7 +6,6 @@
 std::unique_ptr<NodeDataModel> DataModelRegistry::create(QString const &modelName)
 {
     auto it = _registeredItemCreators.find(modelName);
-
     if (it != _registeredItemCreators.end()) {
         return it->second();
     }
@@ -35,7 +34,6 @@ TypeConverter DataModelRegistry::getTypeConverter(NodeDataType const &d1,
     TypeConverterId converterId = std::make_pair(d1, d2);
 
     auto it = _registeredTypeConverters.find(converterId);
-
     if (it != _registeredTypeConverters.end()) {
         return it->second;
     }

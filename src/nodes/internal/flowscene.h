@@ -49,25 +49,20 @@ public:
     void deleteConnection(Connection const &connection);
 
     Node &createNode(std::unique_ptr<NodeDataModel> &&dataModel);
-
     Node &restoreNode(QJsonObject const &nodeJson);
 
     void removeNode(Node &node);
 
     DataModelRegistry &registry() const;
-
     void setRegistry(std::shared_ptr<DataModelRegistry> registry);
 
     void iterateOverNodes(std::function<void(Node*)> const &visitor);
-
     void iterateOverNodeData(std::function<void(NodeDataModel *)> const &visitor);
-
     void iterateOverNodeDataDependentOrder(std::function<void(NodeDataModel *)> const &visitor);
 
     QPointF getNodePosition(Node const &node) const;
 
     void setNodePosition(Node &node, QPointF const &pos) const;
-
     QSizeF getNodeSize(Node const &node) const;
 
 public:
@@ -89,7 +84,6 @@ signals:
     void nodeCreated(Node &n);
 
     //! 节点已添加到场景中
-    //! 如果需要节点的正确位置，则连接到该信号
     void nodePlaced(Node &n);
     void nodeDeleted(Node &n);
 

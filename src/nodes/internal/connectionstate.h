@@ -7,8 +7,8 @@
 class QPointF;
 class Node;
 
-/// Stores currently draggind end.
-/// Remembers last hovered Node.
+//! Stores currently draggind end.
+//! Remembers last hovered Node.
 class ConnectionState
 {
 public:

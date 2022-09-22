@@ -21,7 +21,7 @@ class DataModelRegistry
 public:
     using RegistryItemPtr     = std::unique_ptr<NodeDataModel>;
     using RegistryItemCreator = std::function<RegistryItemPtr()>;
-    using RegisteredModelCreatorsMap = std::unordered_map<QString, RegistryItemCreator>;
+    using RegisteredModelCreatorsMap  = std::unordered_map<QString, RegistryItemCreator>;
     using RegisteredModelsCategoryMap = std::unordered_map<QString, QString>;
     using CategoriesSet = std::set<QString>;
 
@@ -90,20 +90,18 @@ public:
                                    NodeDataType const &d2) const;
 
 private:
-    RegisteredModelsCategoryMap _registeredModelsCategory;
-
-    CategoriesSet _categories;
-
-    RegisteredModelCreatorsMap _registeredItemCreators;
-    RegisteredTypeConvertersMap _registeredTypeConverters;
+    CategoriesSet _categories;    // 类别集合
+    RegisteredModelsCategoryMap _registeredModelsCategory;    // 模型类别映射
+    RegisteredModelCreatorsMap _registeredItemCreators;       // 模型创建者映射
+    RegisteredTypeConvertersMap _registeredTypeConverters;    // 类型转化映射
 
 private:
     template <typename T, typename = void>
-    struct HasStaticMethodName : std::false_type {};
+    struct HasStaticMethodName : std::false_type
+    {};
 
     template <typename T>
-    struct HasStaticMethodName<T,
-            typename std::enable_if<std::is_same<decltype(T::Name()), QString>::value>::type>
+    struct HasStaticMethodName<T, typename std::enable_if<std::is_same<decltype(T::Name()), QString>::value>::type>
         : std::true_type
     {};
 

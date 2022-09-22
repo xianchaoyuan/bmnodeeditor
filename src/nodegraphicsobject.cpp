@@ -75,13 +75,11 @@ Node const &NodeGraphicsObject::node() const
 
 void NodeGraphicsObject::embedQWidget()
 {
-    NodeGeometry & geom = _node.nodeGeometry();
+    NodeGeometry &geom = _node.nodeGeometry();
 
     if (auto w = _node.nodeDataModel()->embeddedWidget()) {
         _proxyWidget = new QGraphicsProxyWidget(this);
-
         _proxyWidget->setWidget(w);
-
         _proxyWidget->setPreferredWidth(5);
 
         geom.recalculateSize();
@@ -324,10 +322,10 @@ void NodeGraphicsObject::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mouseDoubleClickEvent(event);
 
-    _scene.nodeDoubleClicked(node());
+    emit _scene.nodeDoubleClicked(node());
 }
 
-void NodeGraphicsObject::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
+void NodeGraphicsObject::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 {
-    _scene.nodeContextMenu(node(), mapToScene(event->pos()));
+    emit _scene.nodeContextMenu(node(), mapToScene(event->pos()));
 }

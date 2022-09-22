@@ -46,10 +46,10 @@ public:
     QRectF entryBoundingRect() const;
     QRectF boundingRect() const;
 
-    /// Updates size unconditionally
+    //! Updates size unconditionally
     void recalculateSize() const;
 
-    /// Updates size if the QFontMetrics is changed
+    //! Updates size if the QFontMetrics is changed
     void recalculateSize(QFont const &font) const;
 
     // TODO removed default QTransform()
@@ -63,10 +63,10 @@ public:
 
     QRect resizeRect() const;
 
-    /// Returns the position of a widget on the Node surface
+    //! Returns the position of a widget on the Node surface
     QPointF widgetPosition() const;
 
-    /// Returns the maximum height a widget can be without causing the node to grow.
+    //! Returns the maximum height a widget can be without causing the node to grow.
     int equivalentWidgetHeight() const;
 
     unsigned int validationHeight() const;

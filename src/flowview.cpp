@@ -29,7 +29,6 @@ FlowView::FlowView(QWidget *parent)
     setRenderHint(QPainter::Antialiasing);
 
     auto const &flowViewStyle = StyleCollection::flowViewStyle();
-
     setBackgroundBrush(flowViewStyle.BackgroundColor);
 
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -89,21 +88,18 @@ void FlowView::contextMenuEvent(QContextMenuEvent *event)
 
     auto skipText = QStringLiteral("skip me");
 
-    //Add filterbox to the context menu
+    // 将筛选器框添加到上下文菜单
     auto *txtBox = new QLineEdit(&modelMenu);
-
     txtBox->setPlaceholderText(QStringLiteral("Filter"));
     txtBox->setClearButtonEnabled(true);
-
     auto *txtBoxAction = new QWidgetAction(&modelMenu);
     txtBoxAction->setDefaultWidget(txtBox);
 
     modelMenu.addAction(txtBoxAction);
 
-    //Add result treeview to the context menu
+    // 将结果树视图添加到上下文菜单
     auto *treeView = new QTreeWidget(&modelMenu);
     treeView->header()->close();
-
     auto *treeViewAction = new QWidgetAction(&modelMenu);
     treeViewAction->setDefaultWidget(treeView);
 
@@ -126,23 +122,20 @@ void FlowView::contextMenuEvent(QContextMenuEvent *event)
 
     treeView->expandAll();
 
-    connect(treeView, &QTreeWidget::itemClicked, [&](QTreeWidgetItem *item, int)
-    {
+    connect(treeView, &QTreeWidget::itemClicked, [&](QTreeWidgetItem *item, int) {
         QString modelName = item->data(0, Qt::UserRole).toString();
-
         if (modelName == skipText) {
             return;
         }
 
         auto type = _scene->registry().create(modelName);
-
         if (type) {
             auto &node = _scene->createNode(std::move(type));
             QPoint pos = event->pos();
-            QPointF posView = this->mapToScene(pos);
+            QPointF posView = mapToScene(pos);
             node.nodeGraphicsObject().setPos(posView);
 
-            _scene->nodePlaced(node);
+            emit _scene->nodePlaced(node);
         } else {
             qDebug() << "Model not found";
         }
@@ -150,9 +143,8 @@ void FlowView::contextMenuEvent(QContextMenuEvent *event)
         modelMenu.close();
     });
 
-    //Setup filtering
-    connect(txtBox, &QLineEdit::textChanged, [&](const QString &text)
-    {
+    // 设置筛选
+    connect(txtBox, &QLineEdit::textChanged, [&](const QString &text) {
         for (auto &topLvlItem : topLevelItems) {
             for (int i = 0; i < topLvlItem->childCount(); ++i) {
                 auto child = topLvlItem->child(i);
@@ -163,7 +155,7 @@ void FlowView::contextMenuEvent(QContextMenuEvent *event)
         }
     });
 
-    // make sure the text box gets focus so the user doesn't have to click on it
+    // 默认焦点
     txtBox->setFocus();
 
     modelMenu.exec(event->globalPos());
@@ -212,7 +204,7 @@ void FlowView::deleteSelectedNodes()
     // Delete the selected connections first, ensuring that they won't be
     // automatically deleted when selected nodes are deleted (deleting a node
     // deletes some connections as well)
-    for (QGraphicsItem * item : _scene->selectedItems()) {
+    for (QGraphicsItem *item : _scene->selectedItems()) {
         if (auto c = qgraphicsitem_cast<ConnectionGraphicsObject*>(item))
             _scene->deleteConnection(c->connection());
     }
@@ -221,7 +213,7 @@ void FlowView::deleteSelectedNodes()
     // Selected connections were already deleted prior to this loop, otherwise
     // qgraphicsitem_cast<NodeGraphicsObject*>(item) could be a use-after-free
     // when a selected connection is deleted by deleting the node.
-    for (QGraphicsItem * item : _scene->selectedItems()) {
+    for (QGraphicsItem *item : _scene->selectedItems()) {
         if (auto n = qgraphicsitem_cast<NodeGraphicsObject*>(item))
             _scene->removeNode(n->node());
     }

@@ -19,15 +19,10 @@ Node::Node(std::unique_ptr<NodeDataModel> && dataModel)
 {
     _nodeGeometry.recalculateSize();
 
-    // propagate data: model => node
-    connect(_nodeDataModel.get(), &NodeDataModel::dataUpdated,
-            this, &Node::onDataUpdated);
-
-    connect(_nodeDataModel.get(), &NodeDataModel::dataInvalidated,
-            this, &Node::onDataInvalidated);
-
-    connect(_nodeDataModel.get(), &NodeDataModel::embeddedWidgetSizeUpdated,
-            this, &Node::onNodeSizeUpdated );
+    // 数据传输
+    connect(_nodeDataModel.get(), &NodeDataModel::dataUpdated, this, &Node::onDataUpdated);
+    connect(_nodeDataModel.get(), &NodeDataModel::dataInvalidated, this, &Node::onDataInvalidated);
+    connect(_nodeDataModel.get(), &NodeDataModel::embeddedWidgetSizeUpdated, this, &Node::onNodeSizeUpdated );
 }
 
 Node::~Node() = default;
@@ -104,7 +99,6 @@ NodeGeometry &Node::nodeGeometry()
     return _nodeGeometry;
 }
 
-
 NodeGeometry const &Node::nodeGeometry() const
 {
     return _nodeGeometry;
@@ -144,18 +138,14 @@ void Node::onDataUpdated(PortIndex index)
 {
     auto nodeData = _nodeDataModel->outData(index);
 
-    auto const &connections =
-            _nodeState.connections(PortType::Out, index);
-
+    auto const &connections = _nodeState.connections(PortType::Out, index);
     for (auto const &c : connections)
         c.second->propagateData(nodeData);
 }
 
 void Node::onDataInvalidated(PortIndex index)
 {
-    auto const &connections =
-            _nodeState.connections(PortType::Out, index);
-
+    auto const &connections = _nodeState.connections(PortType::Out, index);
     for (auto const &c : connections)
         c.second->propagateEmptyData();
 }
@@ -169,7 +159,7 @@ void Node::onNodeSizeUpdated()
     for (PortType type: {PortType::In, PortType::Out}) {
         for (auto &conn_set : nodeState().getEntries(type)) {
             for (auto &pair: conn_set) {
-                Connection* conn = pair.second;
+                Connection *conn = pair.second;
                 conn->getConnectionGraphicsObject().move();
             }
         }

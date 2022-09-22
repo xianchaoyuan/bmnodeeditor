@@ -22,7 +22,7 @@ void NodePainter::paint(QPainter *painter, Node &node, FlowScene const &scene)
     geom.recalculateSize(painter->font());
 
     //--------------------------------------------
-    NodeDataModel const * model = node.nodeDataModel();
+    NodeDataModel const *model = node.nodeDataModel();
 
     drawNodeRect(painter, geom, model, graphicsObject);
 
@@ -38,7 +38,7 @@ void NodePainter::paint(QPainter *painter, Node &node, FlowScene const &scene)
 
     drawValidationRect(painter, geom, model, graphicsObject);
 
-    /// call custom painter
+    //! call custom painter
     if (auto painterDelegate = model->painterDelegate()) {
         painterDelegate->paint(painter, geom, model);
     }
@@ -46,7 +46,7 @@ void NodePainter::paint(QPainter *painter, Node &node, FlowScene const &scene)
 
 void NodePainter::drawNodeRect(QPainter *painter,
                                NodeGeometry const &geom,
-                               NodeDataModel const* model,
+                               NodeDataModel const *model,
                                NodeGraphicsObject const &graphicsObject)
 {
     NodeStyle const &nodeStyle = model->nodeStyle();
@@ -85,7 +85,7 @@ void NodePainter::drawNodeRect(QPainter *painter,
 void NodePainter::drawConnectionPoints(QPainter *painter,
                                        NodeGeometry const &geom,
                                        NodeState const &state,
-                                       NodeDataModel const * model,
+                                       NodeDataModel const *model,
                                        FlowScene const &scene)
 {
     NodeStyle const &nodeStyle      = model->nodeStyle();
@@ -153,7 +153,7 @@ void NodePainter::drawConnectionPoints(QPainter *painter,
 void NodePainter::drawFilledConnectionPoints(QPainter *painter,
                                              NodeGeometry const &geom,
                                              NodeState const &state,
-                                             NodeDataModel const * model)
+                                             NodeDataModel const *model)
 {
     NodeStyle const &nodeStyle       = model->nodeStyle();
     auto const     & connectionStyle = StyleCollection::connectionStyle();
@@ -192,7 +192,7 @@ void NodePainter::drawFilledConnectionPoints(QPainter *painter,
 void NodePainter::drawModelName(QPainter *painter,
                                 NodeGeometry const &geom,
                                 NodeState const &state,
-                                NodeDataModel const * model)
+                                NodeDataModel const *model)
 {
     NodeStyle const &nodeStyle = model->nodeStyle();
 
@@ -225,7 +225,7 @@ void NodePainter::drawModelName(QPainter *painter,
 void NodePainter::drawEntryLabels(QPainter *painter,
                                   NodeGeometry const &geom,
                                   NodeState const &state,
-                                  NodeDataModel const * model)
+                                  NodeDataModel const *model)
 {
     QFontMetrics const &metrics =
             painter->fontMetrics();
@@ -275,7 +275,7 @@ void NodePainter::drawEntryLabels(QPainter *painter,
     }
 }
 
-void NodePainter::drawResizeRect(QPainter *painter, NodeGeometry const &geom, NodeDataModel const * model)
+void NodePainter::drawResizeRect(QPainter *painter, NodeGeometry const &geom, NodeDataModel const *model)
 {
     if (model->resizable())
     {
@@ -287,7 +287,7 @@ void NodePainter::drawResizeRect(QPainter *painter, NodeGeometry const &geom, No
 
 void NodePainter::drawValidationRect(QPainter *painter,
                                      NodeGeometry const &geom,
-                                     NodeDataModel const * model,
+                                     NodeDataModel const *model,
                                      NodeGraphicsObject const &graphicsObject)
 {
     auto modelValidationState = model->validationState();

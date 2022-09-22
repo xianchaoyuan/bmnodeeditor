@@ -1,10 +1,10 @@
 {
-  "FlowViewStyle": {
-    "BackgroundColor": [53, 53, 53],
-    "FineGridColor": [60, 60, 60],
-    "CoarseGridColor": [25, 25, 25]
-  },
-  "NodeStyle": {
+    "FlowViewStyle": {
+      "BackgroundColor": [53, 53, 53],
+      "FineGridColor": [60, 60, 60],
+      "CoarseGridColor": [25, 25, 25]
+    },
+    "NodeStyle": {
     "NormalBoundaryColor": [255, 255, 255],
     "SelectedBoundaryColor": [255, 165, 0],
     "GradientColor0": "gray",
@@ -25,8 +25,8 @@
     "ConnectionPointDiameter": 8.0,
 
     "Opacity": 0.8
-  },
-  "ConnectionStyle": {
+    },
+    "ConnectionStyle": {
     "ConstructionColor": "gray",
     "NormalColor": "darkcyan",
     "SelectedColor": [100, 100, 100],
@@ -38,5 +38,5 @@
     "PointDiameter": 10.0,
 
     "UseDataDefinedColors": false
-  }
+    }
 }
