@@ -49,7 +49,7 @@ void NodePainter::drawNodeRect(QPainter *painter,
                                NodeDataModel const *model,
                                NodeGraphicsObject const &graphicsObject)
 {
-    NodeStyle const &nodeStyle = model->nodeStyle();
+    const NodeStyle &nodeStyle = model->nodeStyle();
 
     auto color = graphicsObject.isSelected()
             ? nodeStyle.SelectedBoundaryColor
@@ -88,7 +88,7 @@ void NodePainter::drawConnectionPoints(QPainter *painter,
                                        NodeDataModel const *model,
                                        FlowScene const &scene)
 {
-    NodeStyle const &nodeStyle      = model->nodeStyle();
+    const NodeStyle &nodeStyle      = model->nodeStyle();
     auto const     &connectionStyle = StyleCollection::connectionStyle();
 
     float diameter = nodeStyle.ConnectionPointDiameter;
@@ -155,7 +155,7 @@ void NodePainter::drawFilledConnectionPoints(QPainter *painter,
                                              NodeState const &state,
                                              NodeDataModel const *model)
 {
-    NodeStyle const &nodeStyle       = model->nodeStyle();
+    const NodeStyle &nodeStyle       = model->nodeStyle();
     auto const     & connectionStyle = StyleCollection::connectionStyle();
 
     auto diameter = nodeStyle.ConnectionPointDiameter;
@@ -194,7 +194,7 @@ void NodePainter::drawModelName(QPainter *painter,
                                 NodeState const &state,
                                 NodeDataModel const *model)
 {
-    NodeStyle const &nodeStyle = model->nodeStyle();
+    const NodeStyle &nodeStyle = model->nodeStyle();
 
     Q_UNUSED(state);
 
@@ -280,7 +280,6 @@ void NodePainter::drawResizeRect(QPainter *painter, NodeGeometry const &geom, No
     if (model->resizable())
     {
         painter->setBrush(Qt::gray);
-
         painter->drawEllipse(geom.resizeRect());
     }
 }
@@ -293,7 +292,7 @@ void NodePainter::drawValidationRect(QPainter *painter,
     auto modelValidationState = model->validationState();
 
     if (modelValidationState != NodeValidationState::Valid) {
-        NodeStyle const &nodeStyle = model->nodeStyle();
+        const NodeStyle &nodeStyle = model->nodeStyle();
 
         auto color = graphicsObject.isSelected()
                 ? nodeStyle.SelectedBoundaryColor

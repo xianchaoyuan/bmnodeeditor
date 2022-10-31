@@ -32,19 +32,15 @@ public:
     NodeDataModel();
     virtual ~NodeDataModel() = default;
 
-    //! Caption is used in GUI
+    //! 说明
     virtual QString caption() const = 0;
-
-    //! It is possible to hide caption in GUI
     virtual bool captionVisible() const { return true; }
 
-    //! Port caption is used in GUI to label individual ports
+    //! 端口标题在GUI中用于标记各个端口
     virtual QString portCaption(PortType, PortIndex) const { return QString(); }
-
-    //! It is possible to hide port caption in GUI
     virtual bool portCaptionVisible(PortType, PortIndex) const { return false; }
 
-    //! Name makes this model unique
+    //! 模型的独一无二的名字（绝对不能重复）
     virtual QString name() const = 0;
 
 public:
@@ -55,6 +51,7 @@ public:
     virtual NodeDataType dataType(PortType portType, PortIndex portIndex) const = 0;
 
 public:
+    // 连接策略
     enum class ConnectionPolicy
     {
         One,
@@ -71,15 +68,15 @@ public:
         return ConnectionPolicy::One;
     }
 
-    NodeStyle const&nodeStyle() const;
-    void setNodeStyle(NodeStyle const &style);
+    const NodeStyle &nodeStyle() const;
+    void setNodeStyle(const NodeStyle &style);
 
 public:
-    //! Triggers the algorithm
+    //! 触发算法
     virtual void setInData(std::shared_ptr<NodeData> nodeData, PortIndex port) = 0;
 
-    // Use this if portInConnectionPolicy returns ConnectionPolicy::Many
-    virtual void setInData(std::shared_ptr<NodeData> nodeData, PortIndex port, const QUuid& connectionId)
+    //! 如果portInConnectPolicy返回ConnectionPolicy:：Many，请使用此选项
+    virtual void setInData(std::shared_ptr<NodeData> nodeData, PortIndex port, const QUuid &connectionId)
     {
         Q_UNUSED(connectionId);
         setInData(nodeData, port);
@@ -87,16 +84,7 @@ public:
 
     virtual std::shared_ptr<NodeData> outData(PortIndex port) = 0;
 
-    /**
-   * It is recommented to preform a lazy initialization for the
-   * embedded widget and create it inside this function, not in the
-   * constructor of the current model.
-   *
-   * Our Model Registry is able to shortly instantiate models in order
-   * to call the non-static `Model::name()`. If the embedded widget is
-   * allocated in the constructor but not actually embedded into some
-   * QGraphicsProxyWidget, we'll gonna have a dangling pointer.
-   */
+    //! 嵌入的小部件使用此函数创建，而不是构造函数
     virtual QWidget *embeddedWidget() = 0;
 
     virtual bool resizable() const { return false; }
@@ -125,18 +113,17 @@ public slots:
     }
 
 signals:
-    //! Triggers the updates in the nodes downstream.
+    //! 触发下游节点中的更新。
     void dataUpdated(PortIndex index);
 
-    //! Triggers the propagation of the empty data downstream.
+    //! 触发下游空数据的传播。
     void dataInvalidated(PortIndex index);
 
     void computingStarted();
-
     void computingFinished();
 
     void embeddedWidgetSizeUpdated();
 
 private:
-    NodeStyle _nodeStyle;
+    NodeStyle m_node_style_;
 };

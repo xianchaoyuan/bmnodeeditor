@@ -7,7 +7,7 @@
 class StyleCollection
 {
 public:
-    static NodeStyle const &nodeStyle();
+    static const NodeStyle &nodeStyle();
     static ConnectionStyle const &connectionStyle();
     static FlowViewStyle const &flowViewStyle();
 
@@ -25,7 +25,7 @@ private:
     static StyleCollection &instance();
 
 private:
-    NodeStyle _nodeStyle;
+    NodeStyle m_node_style_;
     ConnectionStyle _connectionStyle;
     FlowViewStyle _flowViewStyle;
 };

@@ -10,19 +10,24 @@
 #include "connectiongraphicsobject.h"
 #include "connectionstate.h"
 
-Node::Node(std::unique_ptr<NodeDataModel> && dataModel)
-    : _uid(QUuid::createUuid()),
-      _nodeDataModel(std::move(dataModel)),
-      _nodeState(_nodeDataModel),
-      _nodeGeometry(_nodeDataModel),
-      _nodeGraphicsObject(nullptr)
+Node::Node(std::unique_ptr<NodeDataModel> &&dataModel)
+    : m_uuid_(QUuid::createUuid()),
+      m_node_data_model_(std::move(dataModel)),
+      m_node_state_(m_node_data_model_),
+      m_node_geometry_(m_node_data_model_),
+      m_node_graphics_object_(nullptr)
 {
-    _nodeGeometry.recalculateSize();
+    m_node_geometry_.recalculateSize();
 
-    // 数据传输
-    connect(_nodeDataModel.get(), &NodeDataModel::dataUpdated, this, &Node::onDataUpdated);
-    connect(_nodeDataModel.get(), &NodeDataModel::dataInvalidated, this, &Node::onDataInvalidated);
-    connect(_nodeDataModel.get(), &NodeDataModel::embeddedWidgetSizeUpdated, this, &Node::onNodeSizeUpdated );
+    // propagate data: model => node
+    connect(m_node_data_model_.get(), &NodeDataModel::dataUpdated,
+            this, &Node::onDataUpdated);
+
+    connect(m_node_data_model_.get(), &NodeDataModel::dataInvalidated,
+            this, &Node::onDataInvalidated);
+
+    connect(m_node_data_model_.get(), &NodeDataModel::embeddedWidgetSizeUpdated,
+            this, &Node::onNodeSizeUpdated );
 }
 
 Node::~Node() = default;
@@ -30,12 +35,12 @@ Node::~Node() = default;
 QJsonObject Node::save() const
 {
     QJsonObject nodeJson;
-    nodeJson["id"] = _uid.toString();
-    nodeJson["model"] = _nodeDataModel->save();
+    nodeJson["id"] = m_uuid_.toString();
+    nodeJson["model"] = m_node_data_model_->save();
 
     QJsonObject obj;
-    obj["x"] = _nodeGraphicsObject->pos().x();
-    obj["y"] = _nodeGraphicsObject->pos().y();
+    obj["x"] = m_node_graphics_object_->pos().x();
+    obj["y"] = m_node_graphics_object_->pos().y();
     nodeJson["position"] = obj;
 
     return nodeJson;
@@ -43,109 +48,114 @@ QJsonObject Node::save() const
 
 void Node::restore(QJsonObject const &json)
 {
-    _uid = QUuid(json["id"].toString());
+    m_uuid_ = QUuid(json["id"].toString());
 
     QJsonObject positionJson = json["position"].toObject();
     QPointF     point(positionJson["x"].toDouble(),
             positionJson["y"].toDouble());
-    _nodeGraphicsObject->setPos(point);
+    m_node_graphics_object_->setPos(point);
 
-    _nodeDataModel->restore(json["model"].toObject());
+    m_node_data_model_->restore(json["model"].toObject());
 }
 
 QUuid Node::id() const
 {
-    return _uid;
+    return m_uuid_;
 }
 
 void Node::reactToPossibleConnection(PortType reactingPortType,
                                      NodeDataType const &reactingDataType,
                                      QPointF const &scenePoint)
 {
-    QTransform const t = _nodeGraphicsObject->sceneTransform();
+    QTransform const t = m_node_graphics_object_->sceneTransform();
     QPointF p = t.inverted().map(scenePoint);
 
-    _nodeGeometry.setDraggingPosition(p);
-    _nodeGraphicsObject->update();
-    _nodeState.setReaction(NodeState::REACTING,
+    m_node_geometry_.setDraggingPosition(p);
+    m_node_graphics_object_->update();
+    m_node_state_.setReaction(NodeState::REACTING,
                            reactingPortType,
                            reactingDataType);
 }
 
 void Node::resetReactionToConnection()
 {
-    _nodeState.setReaction(NodeState::NOT_REACTING);
-    _nodeGraphicsObject->update();
+    m_node_state_.setReaction(NodeState::NOT_REACTING);
+    m_node_graphics_object_->update();
 }
 
 NodeGraphicsObject const &Node::nodeGraphicsObject() const
 {
-    return *_nodeGraphicsObject.get();
+    return *m_node_graphics_object_.get();
 }
 
 NodeGraphicsObject &Node::nodeGraphicsObject()
 {
-    return *_nodeGraphicsObject.get();
+    return *m_node_graphics_object_.get();
 }
 
 void Node::setGraphicsObject(std::unique_ptr<NodeGraphicsObject>&& graphics)
 {
-    _nodeGraphicsObject = std::move(graphics);
-    _nodeGeometry.recalculateSize();
+    m_node_graphics_object_ = std::move(graphics);
+    m_node_geometry_.recalculateSize();
 }
 
 NodeGeometry &Node::nodeGeometry()
 {
-    return _nodeGeometry;
+    return m_node_geometry_;
 }
+
 
 NodeGeometry const &Node::nodeGeometry() const
 {
-    return _nodeGeometry;
+    return m_node_geometry_;
 }
 
 NodeState const &Node::nodeState() const
 {
-    return _nodeState;
+    return m_node_state_;
 }
 
 NodeState &Node::nodeState()
 {
-    return _nodeState;
+    return m_node_state_;
 }
 
 NodeDataModel *Node::nodeDataModel() const
 {
-    return _nodeDataModel.get();
+    return m_node_data_model_.get();
 }
 
 void Node::propagateData(std::shared_ptr<NodeData> nodeData,
                          PortIndex inPortIndex,
-                         const QUuid& connectionId) const
+                         const QUuid &connectionId) const
 {
-    _nodeDataModel->setInData(std::move(nodeData), inPortIndex, connectionId);
+    m_node_data_model_->setInData(std::move(nodeData), inPortIndex, connectionId);
 
     // Recalculate the nodes visuals. A data change can result in the
     // node taking more space than before, so this forces a
     // recalculate+repaint on the affected node.
-    _nodeGraphicsObject->setGeometryChanged();
-    _nodeGeometry.recalculateSize();
-    _nodeGraphicsObject->update();
-    _nodeGraphicsObject->moveConnections();
+    m_node_graphics_object_->setGeometryChanged();
+    m_node_geometry_.recalculateSize();
+    m_node_graphics_object_->update();
+    m_node_graphics_object_->moveConnections();
 }
 
 void Node::onDataUpdated(PortIndex index)
 {
-    auto nodeData = _nodeDataModel->outData(index);
+    auto nodeData = m_node_data_model_->outData(index);
 
-    auto const &connections = _nodeState.connections(PortType::Out, index);
+    auto const &connections =
+            m_node_state_.connections(PortType::Out, index);
+
     for (auto const &c : connections)
         c.second->propagateData(nodeData);
 }
 
 void Node::onDataInvalidated(PortIndex index)
 {
-    auto const &connections = _nodeState.connections(PortType::Out, index);
+    auto const &connections =
+            m_node_state_.connections(PortType::Out, index);
+
     for (auto const &c : connections)
         c.second->propagateEmptyData();
 }
@@ -159,7 +169,7 @@ void Node::onNodeSizeUpdated()
     for (PortType type: {PortType::In, PortType::Out}) {
         for (auto &conn_set : nodeState().getEntries(type)) {
             for (auto &pair: conn_set) {
-                Connection *conn = pair.second;
+                Connection* conn = pair.second;
                 conn->getConnectionGraphicsObject().move();
             }
         }

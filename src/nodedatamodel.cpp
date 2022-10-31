@@ -2,7 +2,7 @@
 #include "stylecollection.h"
 
 NodeDataModel::NodeDataModel()
-    : _nodeStyle(StyleCollection::nodeStyle())
+    : m_node_style_(StyleCollection::nodeStyle())
 {
     // Derived classes can initialize specific style here
 }
@@ -15,12 +15,12 @@ QJsonObject NodeDataModel::save() const
     return modelJson;
 }
 
-NodeStyle const &NodeDataModel::nodeStyle() const
+const NodeStyle &NodeDataModel::nodeStyle() const
 {
-    return _nodeStyle;
+    return m_node_style_;
 }
 
-void NodeDataModel::setNodeStyle(NodeStyle const &style)
+void NodeDataModel::setNodeStyle(const NodeStyle &style)
 {
-    _nodeStyle = style;
+    m_node_style_ = style;
 }

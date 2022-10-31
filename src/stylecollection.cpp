@@ -1,8 +1,8 @@
 #include "stylecollection.h"
 
-NodeStyle const &StyleCollection::nodeStyle()
+const NodeStyle &StyleCollection::nodeStyle()
 {
-    return instance()._nodeStyle;
+    return instance().m_node_style_;
 }
 
 ConnectionStyle const &StyleCollection::connectionStyle()
@@ -17,7 +17,7 @@ FlowViewStyle const &StyleCollection::flowViewStyle()
 
 void StyleCollection::setNodeStyle(NodeStyle nodeStyle)
 {
-    instance()._nodeStyle = nodeStyle;
+    instance().m_node_style_ = nodeStyle;
 }
 
 void StyleCollection::setConnectionStyle(ConnectionStyle connectionStyle)

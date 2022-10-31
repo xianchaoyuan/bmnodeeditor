@@ -64,7 +64,6 @@ public:
     ConnectionState &connectionState();
 
     ConnectionGeometry &connectionGeometry();
-
     ConnectionGeometry const &connectionGeometry() const;
 
     Node *getNode(PortType portType) const;
@@ -90,7 +89,7 @@ signals:
     void updated(Connection &conn);
 
 private:
-    QUuid _uid;
+    QUuid m_uuid_;
 
 private:
     Node *_outNode = nullptr;

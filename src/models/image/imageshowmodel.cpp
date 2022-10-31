@@ -40,7 +40,6 @@ unsigned int ImageShowModel::nPorts(PortType portType) const
     return result;
 }
 
-
 bool ImageShowModel::eventFilter(QObject *object, QEvent *event)
 {
     if (object == _label) {
@@ -77,7 +76,6 @@ void ImageShowModel::setInData(std::shared_ptr<NodeData> nodeData, PortIndex)
 
         int w = _label->width();
         int h = _label->height();
-
         _label->setPixmap(d->pixmap().scaled(w, h, Qt::KeepAspectRatio));
     } else {
         _label->setPixmap(QPixmap());

@@ -49,32 +49,26 @@ public:
     NodeState &nodeState();
     NodeDataModel *nodeDataModel() const;
 
-public slots: // data propagation
-    //! Propagates incoming data to the underlying model.
+public slots:
+    //! 将传入数据传播到基础模型。
     void propagateData(std::shared_ptr<NodeData> nodeData,
                        PortIndex inPortIndex,
-                       const QUuid& connectionId) const;
+                       const QUuid &connectionId) const;
 
-    //! Fetches data from model's OUT #index port
-    //! and propagates it to the connection
+    //! 从模型的out索引端口获取数据并将其传播到连接
     void onDataUpdated(PortIndex index);
 
-    //! Propagates empty data to the attached connection.
+    //! 将空数据传播到连接
     void onDataInvalidated(PortIndex index);
 
-    //! update the graphic part if the size of the embeddedwidget changes
+    //! 如果embeddedwidget的大小更改，则更新图形部件
     void onNodeSizeUpdated();
 
 private:
-    // addressing
-    QUuid _uid;
+    std::unique_ptr<NodeDataModel> m_node_data_model_;    // data
+    std::unique_ptr<NodeGraphicsObject> m_node_graphics_object_;
 
-    NodeState _nodeState;
-
-    // painting
-    NodeGeometry _nodeGeometry;
-
-    // data
-    std::unique_ptr<NodeDataModel> _nodeDataModel;
-    std::unique_ptr<NodeGraphicsObject> _nodeGraphicsObject;
+    QUuid m_uuid_;
+    NodeState m_node_state_;
+    NodeGeometry m_node_geometry_;    // painting
 };

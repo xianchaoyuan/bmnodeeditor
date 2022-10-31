@@ -15,7 +15,7 @@
 #include "connectiongraphicsobject.h"
 
 Connection::Connection(PortType portType, Node &node, PortIndex portIndex)
-    : _uid(QUuid::createUuid()),
+    : m_uuid_(QUuid::createUuid()),
       _outPortIndex(INVALID),
       _inPortIndex(INVALID),
       _connectionState()
@@ -30,7 +30,7 @@ Connection::Connection(Node &nodeIn,
                        Node &nodeOut,
                        PortIndex portIndexOut,
                        TypeConverter typeConverter)
-    : _uid(QUuid::createUuid()),
+    : m_uuid_(QUuid::createUuid()),
       _outNode(&nodeOut),
       _inNode(&nodeIn),
       _outPortIndex(portIndexOut),
@@ -94,7 +94,7 @@ QJsonObject Connection::save() const
 
 QUuid Connection::id() const
 {
-    return _uid;
+    return m_uuid_;
 }
 
 bool Connection::complete() const

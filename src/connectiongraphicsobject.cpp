@@ -27,8 +27,7 @@ ConnectionGraphicsObject::ConnectionGraphicsObject(FlowScene &scene,
     setFlag(QGraphicsItem::ItemIsSelectable, true);
 
     setAcceptHoverEvents(true);
-
-    // addGraphicsEffect();
+    addGraphicsEffect();
 
     setZValue(-1.0);
 }

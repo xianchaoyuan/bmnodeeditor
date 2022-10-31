@@ -6,7 +6,6 @@ set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 set(CMAKE_DISABLE_SOURCE_CHANGES  ON)
 set(OpenGL_GL_PREFERENCE LEGACY)
 
-option(BUILD_SHARED_LIBS "Build as shared library" ON)
 option(BUILD_DEBUG_POSTFIX_D "Append d suffix to debug libraries" OFF)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
@@ -93,5 +92,5 @@ target_compile_definitions(${PROJECT_NAME}
     NODE_EDITOR_SHARED
     PRIVATE
     NODE_EDITOR_EXPORTS
-    #        NODE_DEBUG_DRAWING
+#    NODE_DEBUG_DRAWING
 )
