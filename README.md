@@ -1,2 +1,2 @@
-# Bm NodeEditor
+# bm nodeeditor
 
